@@ -84,4 +84,8 @@ impl Application for Events {
             .center_y()
             .into()
     }
+
+    fn exiting(&self) {
+        println!("Exiting...")
+    }
 }

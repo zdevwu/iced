@@ -91,6 +91,9 @@ pub trait Application: Program {
     fn scale_factor(&self) -> f64 {
         1.0
     }
+
+    /// Triggered when application is exiting.
+    fn exiting(&self) {}
 }
 
 /// Runs an [`Application`] with an executor, compositor, and the provided
@@ -357,6 +360,8 @@ async fn run_instance<A, E, C>(
 
     // Manually drop the user interface
     drop(ManuallyDrop::into_inner(user_interface));
+
+    application.exiting();
 }
 
 /// Returns true if the provided event should cause an [`Application`] to
